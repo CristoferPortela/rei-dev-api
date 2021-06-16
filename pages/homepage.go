@@ -21,10 +21,22 @@ type sliderItem struct {
 	ImageAuthor      string `json:"author"`
 }
 
+type section struct {
+	Title    string `json:"title"`
+	Content  string `json:"content"`
+	Layout   int    `json:"layout"`
+	Priority int    `json:"priority"`
+}
+type footer struct {
+	Copyright string `json:"copyright"`
+}
+
 type Page struct {
-	Title  string       `json:"title"`
-	Routes []route      `json:"routes"`
-	Slider []sliderItem `json:"slider"`
+	Title    string       `json:"title"`
+	Routes   []route      `json:"routes"`
+	Slider   []sliderItem `json:"slider"`
+	Sections []section    `json:"sections"`
+	Footer   footer       `json:"footer"`
 }
 
 func HomePage(c echo.Context) error {
