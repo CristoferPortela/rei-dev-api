@@ -43,12 +43,20 @@ func HomePage(c echo.Context) error {
 
 	var r []route
 	var s []sliderItem
+	var sec []section
+	// var f []footer
+
 	r = append(r, route{Title: "Contato", URL: "contato"}, route{Title: "Ofertas", URL: "ofertas"})
 	s = append(s, sliderItem{Title: "Bem vindo", Image: "src://oi", Layout: 1, Description: "<p>Bluuu</p>", CallToAction: "/home", ImageDescription: "alter", ImageAuthor: "In pexels"})
+	sec = append(sec, section{Title: "Oi", Content: "<p>clkjma</p>", Layout: 1, Priority: 1})
+	f := footer{Copyright: "Copyright 2021"}
+
 	p := &Page{
-		Title:  "Home",
-		Routes: r,
-		Slider: s,
+		Title:    "Home",
+		Routes:   r,
+		Slider:   s,
+		Sections: sec,
+		Footer:   f,
 	}
 	return c.JSON(http.StatusOK, p)
 }
