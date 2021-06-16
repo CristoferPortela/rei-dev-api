@@ -31,8 +31,17 @@ type footer struct {
 	Copyright string `json:"copyright"`
 }
 
+type design struct {
+	Favicon        string `json:"favicon"`
+	PrimaryColor   string `json:"primary_color"`
+	SecondaryColor string `json:"secondary_color"`
+	MainFont       string `json:"main_font"`
+	MainFontURL    string `json:"main_font_url"`
+}
+
 type Page struct {
 	Title    string       `json:"title"`
+	Design   design       `json:"desgin"`
 	Routes   []route      `json:"routes"`
 	Slider   []sliderItem `json:"slider"`
 	Sections []section    `json:"sections"`
@@ -45,7 +54,7 @@ func HomePage(c echo.Context) error {
 	var s []sliderItem
 	var sec []section
 	// var f []footer
-
+	d := design{Favicon: "localhost:3001//oi", PrimaryColor: "#00000", SecondaryColor: "#FFFFF"}
 	r = append(r, route{Title: "Contato", URL: "contato"}, route{Title: "Ofertas", URL: "ofertas"})
 	s = append(s, sliderItem{Title: "Bem vindo", Image: "src://oi", Layout: 1, Description: "<p>Bluuu</p>", CallToAction: "/home", ImageDescription: "alter", ImageAuthor: "In pexels"})
 	sec = append(sec, section{Title: "Oi", Content: "<p>clkjma</p>", Layout: 1, Priority: 1})
@@ -53,6 +62,7 @@ func HomePage(c echo.Context) error {
 
 	p := &Page{
 		Title:    "Home",
+		Design:   d,
 		Routes:   r,
 		Slider:   s,
 		Sections: sec,
